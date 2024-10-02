@@ -1,0 +1,107 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--  <link rel="shortcut icon" href="/favicon.ico">-->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+
+  <div id="level" class="level-container">
+
+    <span id="levelNumber" class="header"></span>
+
+    <div id="solvedWords" class="words-container">
+<!--      <div class="word-row">-->
+<!--        <div class="cell"><span></span></div>-->
+<!--        <div class="cell"><span></span></div>-->
+<!--        <div class="cell"><span></span></div>-->
+<!--        <div class="cell"><span></span></div>-->
+<!--      </div>-->
+
+<!--      <div class="word-row solved">-->
+<!--        <div class="cell"><span>К</span></div>-->
+<!--        <div class="cell"><span>А</span></div>-->
+<!--        <div class="cell"><span>Е</span></div>-->
+<!--        <div class="cell"><span>Ф</span></div>-->
+<!--      </div>-->
+    </div>
+
+    <div id="currentWord" class="current-word-row">
+<!--      <div class="cell"><span>У</span></div>-->
+<!--      <div class="cell"><span>Р</span></div>-->
+<!--      <div class="cell"><span>А</span></div>-->
+    </div>
+
+    <div id="controlParent" class="control-circle">
+
+<!--      <div class="clock-hand">-->
+<!--        <div class="letter-button">-->
+<!--          <div class="layer1">-->
+<!--            <span class="letter">Ж</span>-->
+<!--          </div>-->
+<!--          <div class="layer2"></div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+    </div>
+
+  </div>
+
+
+  <div id="congratulation" class="congratulation-container hidden">
+      <div id="congratulationHeader" class="header1"></div>
+      <div class="header2">Изумительно!</div>
+
+      <div id="congratulationButton" class="next-level-button">
+        <div class="layer1">
+          <span id="congratulationButtonText" class="level"></span>
+        </div>
+        <div class="layer2"></div>
+      </div>
+  </div>
+
+
+  <div id="warning" class="tab-warning-overlay hidden">
+
+      <div class="warning-popup">
+          <div class="orange-label-container">
+              <div class="label">
+                  <span class="top-text">Две вкладки</span><span class="bottom-text">с игрой?</span>
+              </div>
+              <div class="down-arrow"></div>
+              <div class="label-shadow"></div>
+              <div class="down-arrow shadow"></div>
+          </div>
+
+          <div class="warning-text">
+              <p>Похоже, игра открыта в <br>
+                  нескольких вкладках браузера.<br>
+                  Чтобы продолжить играть в<br>
+                  этой вкладке, обновите<br>
+                  страницу.</p>
+          </div>
+
+          <div id="refreshButton" class="refresh-button">
+              <div class="layer1">
+                  <span>Обновить</span>
+              </div>
+              <div class="layer2"></div>
+          </div>
+      </div>
+
+  </div>
+
+
+
+
+
+
+  <script type="module" src="./js/script.js"></script>
+</body>
+</html>
