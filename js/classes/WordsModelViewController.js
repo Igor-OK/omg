@@ -49,17 +49,36 @@ export class WordsModelViewController {
     recovery () {
         const { savedLevelNumber, savedModel } = this.getSavedProgress();
         this.levelNumber = savedLevelNumber;
+
+        const edgeCaseConditionRecoveryBetweenLevels = !savedModel.find(wordData => !wordData.isSolved);
+        if(edgeCaseConditionRecoveryBetweenLevels) this.reloadPageWithTheNextLevel();
+
         const index = this.getWordsArrayIndexByLevelNumber(this.levelNumber);
         this.wordsArray = [...this.levelsArray[index]];
         this.modelArray = savedModel;
 
         this.viewArray = this.wordsArray.map(word => new WordRow(word, this.$viewParent));
         this.viewArray.forEach((wordRowObj, index) => this.modelArray[index].isSolved && wordRowObj.matchAsSolved());
-        this.applyLevelNumberToUi()
+        this.applyLevelNumberToUi();
 
         this.controllerLettersArray = getMinimalSetOfLetters(this.wordsArray);
         this.controller = new LettersInputController(this.controllerLettersArray, this.tryToApplyWord);
     }
+
+    // recovery () {
+    //     const { savedLevelNumber, savedModel } = this.getSavedProgress();
+    //     this.levelNumber = savedLevelNumber;
+    //     const index = this.getWordsArrayIndexByLevelNumber(this.levelNumber);
+    //     this.wordsArray = [...this.levelsArray[index]];
+    //     this.modelArray = savedModel;
+    //
+    //     this.viewArray = this.wordsArray.map(word => new WordRow(word, this.$viewParent));
+    //     this.viewArray.forEach((wordRowObj, index) => this.modelArray[index].isSolved && wordRowObj.matchAsSolved());
+    //     this.applyLevelNumberToUi()
+    //
+    //     this.controllerLettersArray = getMinimalSetOfLetters(this.wordsArray);
+    //     this.controller = new LettersInputController(this.controllerLettersArray, this.tryToApplyWord);
+    // }
 
     applyLevelNumberToUi () {
         this.$levelNumberNode.innerText = `Уровень ${this.levelNumber + 1}`;

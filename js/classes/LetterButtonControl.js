@@ -1,13 +1,13 @@
-//todo smaller circle inside for correct hover and line
-
 export class LetterButtonControl {
     constructor (letter, parentNode, startInputFn, addLetterToFocusedFn, checkIsInputInProcessFn) {
         this.letter = letter;
         this.isFocused = false;
+        this.pointsCoordinates = [];
 
         this.$parent = parentNode;
         this.$clockHand = document.createElement('div');
         this.$button = document.createElement('div');
+        this.$point = document.createElement('div');
 
         this.startInput = startInputFn;
         this.addLetterToFocused = addLetterToFocusedFn;
@@ -17,6 +17,7 @@ export class LetterButtonControl {
         this.addEventListeners();
     }
 
+
     create () {
         this.$clockHand.classList.add('clock-hand');
         this.$button.classList.add('letter-button');
@@ -24,6 +25,9 @@ export class LetterButtonControl {
         const layer1 = document.createElement('div');
         layer1.classList.add('layer1');
         this.$button.appendChild(layer1);
+
+        this.$point.classList.add('point');
+        this.$button.appendChild(this.$point);
 
         const letter = document.createElement('span');
         letter.classList.add('letter');
@@ -38,35 +42,53 @@ export class LetterButtonControl {
         this.$parent.appendChild(this.$clockHand);
     }
 
+
     focus = () =>  {
         if (!this.checkIsInputInProcess()) return;
         if (this.isFocused) return;
 
-        this.addLetterToFocused(this.letter);
+        this.addLetterToFocused(this.letter, this.pointsCoordinates);
         this.$button.classList.add('focused');
         this.isFocused = true;
     };
+
 
     reset = () => {
         this.$button.classList.remove('focused');
         this.isFocused = false;
     };
 
-    click = (e) => {
-        e.target.releasePointerCapture(e.pointerId)
+
+    click = event => {
+        event.target.releasePointerCapture(event.pointerId);
         this.startInput();
-        this.addLetterToFocused(this.letter);
+        this.addLetterToFocused(this.letter, this.pointsCoordinates);
         this.$button.classList.add('focused');
         this.isFocused = true;
     };
+
 
     get button () {
         return this.$button;
     }
 
+
     get hand () {
         return this.$clockHand;
     }
+
+
+    get point () {
+        return this.$point;
+    }
+
+
+    setPointCoordinates () {
+        const rect = this.$point.getBoundingClientRect();
+        console.log(rect.left, rect.top + 50);
+        this.pointsCoordinates = [rect.left, rect.top];
+    }
+
 
     addEventListeners () {
         this.$button.addEventListener('pointerdown',this.click);
