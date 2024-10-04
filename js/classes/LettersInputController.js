@@ -77,7 +77,6 @@ export class LettersInputController {
         this.canvasObj.clearCanvas();
         if (!this.isInputInProcess) return;
         const curvePointsArray = [...this.curvePointsArray, event.x, event.y];
-        console.log(curvePointsArray);
         this.canvasObj.drawCurve(curvePointsArray);
     };
 };
