@@ -85,7 +85,6 @@ export class LetterButtonControl {
 
     setPointCoordinates () {
         const rect = this.$point.getBoundingClientRect();
-        console.log(rect.left, rect.top + 50);
         this.pointsCoordinates = [rect.left, rect.top];
     }
 
